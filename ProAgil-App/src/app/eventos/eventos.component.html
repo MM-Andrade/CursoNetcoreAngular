@@ -1,3 +1,4 @@
+<app-titulo [titulo]="titulo"></app-titulo>
 <div class="d-flex">
   <div class="form-inline mr-auto" action="">
     <div class="form-group mb-2" placeholder="Buscar" [(ngModel)]="filtroLista" ngDefaultControl>
@@ -64,7 +65,7 @@
   </td>
 </tr>
 </tbody>
-<tfoot *ngIf="!eventos.length">
+<tfoot *ngIf="!eventos">
   <tr>
     <td colspan="7" class="text-center">
       <h4>Nenhum evento encontrato!</h4>
@@ -108,10 +109,10 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
           <div class="form-group col-md-4">
             <label>Data e Hora</label>
             <input type="text" class="form-control" 
-            bsDatepicker
-            [bsConfig]="{ dateInputFormat : 'DD/MM/YYYY hh:mm a'}"
+            bsDatepicker 
+            [bsConfig]="{ dateInputFormat : 'DD/MM/YYYY hh:mm'}"
             [ngClass]="{'is-invalid': registerForm.get('dataEvento').errors &&  registerForm.get('dataEvento').touched, 'is-valid' : !registerForm.get('dataEvento').errors && registerForm.get('dataEvento').touched}"
-            formControlName="dataEvento" placeholder="">
+            formControlName="dataEvento" placeholder="" [value]="registerForm.get('dataEvento').value | DateTimeFormatPipe">
             <div class="invalid-feedback">A data e hora são obrigatórios!</div>
           </div>
         </div>  
